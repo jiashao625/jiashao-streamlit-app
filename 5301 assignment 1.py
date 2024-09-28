@@ -89,22 +89,28 @@ ax.set_title('Top 3 Failed Categories')
 ax.set_xlabel('Category')
 ax.set_ylabel('Number of Failed Projects')
 
+
 st.pyplot(fig)
 
-fig, ax = plt.subplots(figsize=(6.4, 2.4))
+
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
+file_path = '/Users/jiashao/Documents/Assignment/5301/data/kickstarter_2016.csv'
+df = pd.read_csv(file_path)
+
+df_filtered = df[df['Goal'] > 0]
+
+log_goal = np.log10(df_filtered['Goal'])
 
 
 fig, ax = plt.subplots(figsize=(6.4, 2.4))
-
-ax.hist(np.log10(df['Goal'].replace(0, np.nan).dropna()), bins=30, color='blue', alpha=0.7)
-
-ax.set_title('Distribution of Log Goal (Base 10)')
-ax.set_xlabel('Log Goal (Base 10)')
-ax.set_ylabel('Frequency')
+ax.hist(log_goal, bins=30, color='skyblue', edgecolor='black')
+ax.set_title('Distribution of Funding Goal (Log Base 10)', fontsize=14)
+ax.set_xlabel('Log10 of Funding Goal', fontsize=12)
+ax.set_ylabel('Frequency', fontsize=12)
+ax.grid(True)
 
 st.pyplot(fig)
-
