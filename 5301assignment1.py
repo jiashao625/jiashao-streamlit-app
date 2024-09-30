@@ -4,15 +4,15 @@ import matplotlib.pyplot as plt
 
 @st.cache_data()
 def load_data():
-    df = pd.read_csv('/Users/jiashao/Documents/Assignment/5301/kickstarter/kickstarter_2016.csv')
+    df = pd.read_csv('https://raw.githubusercontent.com/jiashao625/jiashao-streamlit-app/refs/heads/main/5301as1.py')
     return df
-df = pd.read_csv('/Users/jiashao/Documents/Assignment/5301/kickstarter/kickstarter_2016.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/jiashao625/jiashao-streamlit-app/refs/heads/main/5301as1.py')
 st.title('Kickstarter 2016')
 st.write(df)
 
 
 st.write("Shape:", df.shape)
-df = pd.read_csv('/Users/jiashao/Documents/Assignment/5301/kickstarter/kickstarter_2016.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/jiashao625/jiashao-streamlit-app/refs/heads/main/5301as1.py')
 fig, ax = plt.subplots(figsize=(6.4, 2.4))
 import streamlit as st
 import pandas as pd
@@ -48,7 +48,7 @@ plt.ylabel('Percentage')
 st.pyplot(fig)
 
 
-df = pd.read_csv('/Users/jiashao/Documents/Assignment/5301/kickstarter/kickstarter_2016.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/jiashao625/jiashao-streamlit-app/refs/heads/main/5301as1.py')
 
 # Group by 'Category' and count the number of projects
 category_counts = df['Category'].value_counts()
