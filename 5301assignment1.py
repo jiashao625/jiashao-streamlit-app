@@ -122,12 +122,10 @@ import numpy as np
 # Title of the Streamlit app
 st.title("Kickstarter Project Goal Distribution (Log Scale)")
 
-# Load the CSV file
-uploaded_file = st.file_uploader("Upload Kickstarter Dataset", type="csv")
-
-if uploaded_file is not None:
-    # Load the dataset
-    df = pd.read_csv(uploaded_file)
+def load_data():
+    df = pd.read_csv('https://raw.githubusercontent.com/jiashao625/jiashao-streamlit-app/refs/heads/main/5301as1.py')
+    return df
+df = pd.read_csv('https://raw.githubusercontent.com/jiashao625/jiashao-streamlit-app/refs/heads/main/5301as1.py')
     
     # Display the first few rows of the dataset to ensure it’s loaded correctly
     st.write("Data Preview:")
