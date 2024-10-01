@@ -114,3 +114,46 @@ ax.grid(True)
 
 st.pyplot(fig)
 
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Title of the Streamlit app
+st.title("Kickstarter Project Goal Distribution (Log Scale)")
+
+# Load the CSV file
+uploaded_file = st.file_uploader("Upload Kickstarter Dataset", type="csv")
+
+if uploaded_file is not None:
+    # Load the dataset
+    df = pd.read_csv(uploaded_file)
+    
+    # Display the first few rows of the dataset to ensure it’s loaded correctly
+    st.write("Data Preview:")
+    st.write(df.head())
+    
+    # Check if the necessary columns exist in the dataset
+    if 'Goal' in df.columns and 'State' in df.columns:
+        # Filter the data for successful and failed projects
+        successful_projects = df[df['State'] == 'Successful']
+        failed_projects = df[df['State'] == 'Failed']
+        
+        # Log transform the goal values
+        successful_log_goal = np.log10(successful_projects['Goal'] + 1)
+        failed_log_goal = np.log10(failed_projects['Goal'] + 1)
+        
+        # Plotting the histograms for both successful and failed projects
+        fig, ax = plt.subplots(figsize=(10, 6))
+
+        ax.hist(failed_log_goal, bins=50, alpha=0.7, label='Failed Projects', color='red', edgecolor='black') 
+        ax.hist(successful_log_goal, bins=50, alpha=0.7, label='Successful Projects', color='green', edgecolor='black')
+        
+        # Add labels, title, and legend
+        ax.set_xlabel('Log10 of Goal Amount')
+        ax.set_ylabel('Number of Projects')
+        ax.set_title('Logarithmic Goal Distribution for Successful and Failed Projects')
+        ax.legend()
+        
+        # Display the plot in Streamlit
+        st.pyplot(fig)
